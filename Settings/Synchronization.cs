@@ -151,7 +151,8 @@ namespace Cliver.InvoiceParser
             {
                 try
                 {
-                    copy(file, PathRoutines.GetPathMirroredInDir(file, Config.StorageDir, uploadFolder));
+                    if (synchronize)
+                        copy(file, PathRoutines.GetPathMirroredInDir(file, Config.StorageDir, uploadFolder));
                 }
                 catch (Exception e)
                 {
