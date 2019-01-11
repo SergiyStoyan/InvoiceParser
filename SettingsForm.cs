@@ -121,7 +121,7 @@ namespace Cliver.InvoiceParser
                 if (path != null)
                     SynchronizationFolder.Text = path + "\\" + ProgramRoutines.GetAppName();
                 else
-                    SynchronizationFolder.Text = AppSettings.StorageDir + "\\" + ProgramRoutines.GetAppName();
+                    SynchronizationFolder.Text = Config.StorageDir + "\\" + ProgramRoutines.GetAppName();
             }
         }
 
