@@ -69,7 +69,7 @@ namespace Cliver.InvoiceParser
             {
                 while (synchronize)
                 {
-                    foreach (string file in Directory.GetFiles(Config.StorageDir))
+                    foreach (string file in Directory.GetFiles(AppSettings.StorageDir))
                     {
                         if (synchronizeFileFilter == null || !synchronizeFileFilter.IsMatch(file))
                             continue;
@@ -91,7 +91,7 @@ namespace Cliver.InvoiceParser
                     DateTime uploadLWT = File.GetLastWriteTime(file);
                     if (uploadLWT.AddSeconds(10) > DateTime.Now)//it is being written
                         return;
-                    string file2 = PathRoutines.GetPathMirroredInDir(file, Config.StorageDir, uploadFolder);
+                    string file2 = PathRoutines.GetPathMirroredInDir(file, AppSettings.StorageDir, uploadFolder);
                     if (File.Exists(file2) && uploadLWT <= File.GetLastWriteTime(file2))
                         return;
                     copy(file, file2);
@@ -123,7 +123,7 @@ namespace Cliver.InvoiceParser
                     DateTime downloadLWT = File.GetLastWriteTime(file);
                     if (downloadLWT.AddSeconds(100) > DateTime.Now)//it is being written
                         return;
-                    string file2 = PathRoutines.GetPathMirroredInDir(file, downloadFolder, Config.StorageDir);
+                    string file2 = PathRoutines.GetPathMirroredInDir(file, downloadFolder, AppSettings.StorageDir);
                     if (downloadLWT <= File.GetLastWriteTime(file2))
                         return;
                     copy(file, file2);
@@ -152,7 +152,7 @@ namespace Cliver.InvoiceParser
                 try
                 {
                     if (synchronize)
-                        copy(file, PathRoutines.GetPathMirroredInDir(file, Config.StorageDir, uploadFolder));
+                        copy(file, PathRoutines.GetPathMirroredInDir(file, AppSettings.StorageDir, uploadFolder));
                 }
                 catch (Exception e)
                 {
